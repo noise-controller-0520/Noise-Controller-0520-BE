@@ -12,18 +12,20 @@
 		"type": "git",
 		"url": "git+https://github.com/noise-controller-0520/Noise-Controller-0520-BE.git"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [ "lambda", "school", "josh", "gorton" ],
+	"author": "Josh Gorton",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/noise-controller-0520/Noise-Controller-0520-BE/issues"
 	},
 	"homepage": "https://github.com/noise-controller-0520/Noise-Controller-0520-BE#readme",
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
 		"cors": "^2.8.5",
 		"dotenv": "^8.0.0",
 		"express": "^4.17.0",
 		"helmet": "^3.18.0",
+		"jsonwebtoken": "^8.5.1",
 		"knex": "^0.17.0-next3",
 		"pg": "^7.11.0",
 		"sqlite3": "^4.0.8"
