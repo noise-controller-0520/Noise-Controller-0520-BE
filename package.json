@@ -12,7 +12,12 @@
 		"type": "git",
 		"url": "git+https://github.com/noise-controller-0520/Noise-Controller-0520-BE.git"
 	},
-	"keywords": [ "lambda", "school", "josh", "gorton" ],
+	"keywords": [
+		"lambda",
+		"school",
+		"josh",
+		"gorton"
+	],
 	"author": "Josh Gorton",
 	"license": "ISC",
 	"bugs": {
@@ -32,6 +37,7 @@
 	},
 	"devDependencies": {
 		"cross-env": "^5.2.0",
+		"faker": "^4.1.0",
 		"jest": "^24.8.0",
 		"nodemon": "^1.19.0",
 		"supertest": "^4.0.2"
