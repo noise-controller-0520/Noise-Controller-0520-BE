@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const authRouter = require('../auth/auth-router');
 const classesRouter = require('./classes/classes-router');
+const authenticate = require('../auth/authenticate');
 
 const server = express();
 
@@ -12,7 +13,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/auth', authRouter);
-server.use('/classes', classesRouter);
+server.use('/classes', authenticate, classesRouter);
 
 server.get('/', (req, res) => {
 	res.send('Welcome to Noise Controller. Please register and login to start using our service.');

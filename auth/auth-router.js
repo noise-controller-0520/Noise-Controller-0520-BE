@@ -32,7 +32,8 @@ router.post('/login', (req, res) => {
 				const token = tokenService.generateToken(user);
 				res.status(200).json({
 					message : `Welcome ${user.first_name || user.username}!`,
-					token
+					token,
+					teacher : user
 				});
 			} else {
 				res.status(401).json({ message: 'Invalid username or password.' });

@@ -28,7 +28,7 @@ function findByTeacher(id) {
 }
 
 async function add(classInfo) {
-	const [ id ] = await db('classes').insert(classInfo);
+	const [ id ] = await db('classes').insert(classInfo, 'id');
 
 	return findById(id);
 }
