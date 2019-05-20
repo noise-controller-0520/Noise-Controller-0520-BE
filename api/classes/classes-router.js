@@ -4,7 +4,9 @@ const Classes = require('../../data/classes-model');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+//not to be used in production, only for development and testing purposes
+
+router.get('/teachers', (req, res) => {
 	Classes.getTeachers()
 		.then((teachers) => {
 			res.status(200).json(teachers);
@@ -14,15 +16,17 @@ router.get('/', (req, res) => {
 		});
 });
 
-router.get('/', (req, res) => {
-	Classes.find()
-		.then((classes) => {
-			res.status(200).json(classes);
-		})
-		.catch((err) => {
-			res.status(500).json({ error: 'Oops, something went wrong!', message: err.message });
-		});
-});
+//not to be used in production, only for development and testing purposes
+
+// router.get('/', (req, res) => {
+// 	Classes.find()
+// 		.then((classes) => {
+// 			res.status(200).json(classes);
+// 		})
+// 		.catch((err) => {
+// 			res.status(500).json({ error: 'Oops, something went wrong!', message: err.message });
+// 		});
+// });
 
 router.get('/:id', (req, res) => {
 	const teacher_id = req.params.id;
@@ -30,7 +34,7 @@ router.get('/:id', (req, res) => {
 	Classes.findByTeacher(teacher_id)
 		.then((classes) => {
 			if (classes.length === 0) {
-				res.status(404).json({ message: 'Teacher ID does not exist.' });
+				res.status(204).json({ message: 'No classes have been added yet.' });
 			} else {
 				res.status(200).json(classes);
 			}
@@ -40,57 +44,57 @@ router.get('/:id', (req, res) => {
 		});
 });
 
-// router.post('/', (req, res) => {
-// 	const postData = req.body;
-// 	db
-// 		.insert(postData)
-// 		.then((post) => {
-// 			if (!postData.text) {
-// 				res.status(400).json({ errorMessage: 'Please provide valid texts in this post.' });
-// 			} else {
-// 				res.status(201).json(post);
-// 			}
-// 		})
-// 		.catch((err) => {
-// 			res.status(500).json({ error: 'There was an error while saving the post to the database' });
-// 		});
-// });
+router.post('/', (req, res) => {
+	const classInfo = req.body;
+	// console.log(req.body);
+	Classes.add(classInfo)
+		.then((classes) => {
+			if (!classInfo.length === 0) {
+				res.status(400).json({ errorMessage: 'Please provide class details in this post.' });
+			} else {
+				res.status(201).json(classes);
+			}
+		})
+		.catch((err) => {
+			res
+				.status(500)
+				.json({ error: 'There was an error while saving the class to the database', message: err.message });
+		});
+});
 
-// router.delete('/:id', (req, res) => {
-// 	const postId = req.params.id;
-// 	console.log('delete');
-// 	db
-// 		.remove(postId)
-// 		.then((post) => {
-// 			if (!post) {
-// 				res.status(404).json({ message: 'The post with the specified ID does not exist.' });
-// 			} else {
-// 				res.status(204).end();
-// 			}
-// 		})
-// 		.catch((err) => {
-// 			res.status(500).json({ error: 'The post could not be removed' });
-// 		});
-// });
+router.delete('/:id', (req, res) => {
+	const classId = req.params.id;
+	// console.log('delete');
+	Classes.remove(classId)
+		.then((classes) => {
+			if (!classes) {
+				res.status(404).json({ message: 'The class with the specified ID does not exist.' });
+			} else {
+				res.status(204).end();
+			}
+		})
+		.catch((err) => {
+			res.status(500).json({ error: 'The class could not be removed' });
+		});
+});
 
-// router.put('/:id', (req, res) => {
-// 	const postId = req.params.id;
-// 	const postData = req.body;
-// 	db
-// 		.update(postId, postData)
-// 		.then((post) => {
-// 			if (!post) {
-// 				res.status(404).json({ message: 'The post with the specified ID does not exist.' });
-// 			}
-// 			if (!postData.text) {
-// 				res.status(400).json({ errorMessage: 'Please provide valid text for the post.' });
-// 			} else {
-// 				res.status(200).json(post);
-// 			}
-// 		})
-// 		.catch((err) => {
-// 			res.status(500).json({ error: 'The post information could not be modified.' });
-// 		});
-// });
+router.put('/:id', (req, res) => {
+	const classId = req.params.id;
+	const classData = req.body;
+	Classes.update(classId, classData)
+		.then((classes) => {
+			if (!classes) {
+				res.status(404).json({ message: 'The class with the specified ID does not exist.' });
+			}
+			if (!classData.length === 0) {
+				res.status(400).json({ errorMessage: 'Please provide class details.' });
+			} else {
+				res.status(200).json(classes);
+			}
+		})
+		.catch((err) => {
+			res.status(500).json({ error: 'The class information could not be modified.', message: err.message });
+		});
+});
 
 module.exports = router;
