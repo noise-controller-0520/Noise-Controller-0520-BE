@@ -8,7 +8,7 @@ exports.up = function(knex) {
 			.notNullable()
 			.references('id')
 			.inTable('classes')
-			.onDelete('RESTRICT')
+			.onDelete('CASCADE')
 			.onUpdate('CASCADE');
 
 		tbl.timestamp('created_at').notNullable().defaultTo(knex.fn.now());

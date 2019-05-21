@@ -10,7 +10,7 @@ exports.up = function(knex) {
 			.notNullable()
 			.references('id')
 			.inTable('teachers')
-			.onDelete('RESTRICT')
+			.onDelete('CASCADE')
 			.onUpdate('CASCADE');
 	});
 };
