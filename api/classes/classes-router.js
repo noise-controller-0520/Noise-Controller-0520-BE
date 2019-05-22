@@ -1,6 +1,7 @@
 const express = require('express');
 
 const Classes = require('../../data/classes-model');
+const teacherIdCheck = require('../../auth/teacher-id-middleware');
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.get('/teachers', (req, res) => {
 // 		});
 // });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', teacherIdCheck, (req, res) => {
 	const teacher_id = req.params.id;
 	// console.log(teacher_id);
 	Classes.findByTeacher(teacher_id)

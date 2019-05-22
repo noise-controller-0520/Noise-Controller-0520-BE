@@ -6,6 +6,7 @@ const authRouter = require('../auth/auth-router');
 const classesRouter = require('./classes/classes-router');
 const sessionsRouter = require('./sessions/sessions-router');
 const authenticate = require('../auth/authenticate');
+const teacherIdCheck = require('../auth/teacher-id-middleware');
 
 const server = express();
 
