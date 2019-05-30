@@ -1,9 +1,9 @@
 # Noise Controller Backend
 
 
-# End Points:
+## End Points:
 
---------To register a new user---------
+### To register a new user
 
 post('/auth/register', object)
 
@@ -25,7 +25,7 @@ example:
     "email": "user@lambda.dev"
 }
 
---------To Login---------
+### To Login
 
 post('/auth/login', object)
 
