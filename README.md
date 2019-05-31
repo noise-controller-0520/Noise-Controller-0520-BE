@@ -40,3 +40,12 @@ example:
     "username": "user",
     "password": "pass"
 }
+
+### To Add a Class
+
+post('/classes/', object)
+
+object = {
+    "teacher_id": "integer",
+    "class_name": "string"
+}
