@@ -49,3 +49,9 @@ object = {
     "teacher_id": "integer",
     "class_name": "string"
 }
+
+### To Get classes by Teacher
+
+get('/classes/:id')
+
+where :id is the teacher_id
