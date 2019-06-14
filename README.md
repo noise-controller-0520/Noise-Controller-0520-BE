@@ -55,3 +55,9 @@ object = {
 get('/classes/:id')
 
 where :id is the teacher_id
+
+### To Delete a Class
+
+delete('/classes/:id')
+
+where :id is the class_id
